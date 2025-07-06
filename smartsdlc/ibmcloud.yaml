@@ -1,0 +1,14 @@
+# IBM Cloud Code Engine deployment manifest
+version: 1
+spec:
+  containers:
+    - image: registry.<region>.bluemix.net/<namespace>/smartsdlc:latest
+      env:
+        - name: WATSONX_API_KEY
+          valueFrom: secretRef:
+            name: watsonx-credentials
+            key: api_key
+        - name: WATSONX_PROJECT_ID
+          valueFrom: secretRef:
+            name: watsonx-credentials
+            key: project_id
